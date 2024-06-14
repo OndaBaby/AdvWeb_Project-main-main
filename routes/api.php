@@ -30,9 +30,9 @@ Route::apiResource('suppliers', SupplierController::class);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('couriers', CourierController::class);
 
-Route::get('/form-data', function () {
-    return response()->json([
-        'brands' => \App\Models\Brand::all(),
-        'suppliers' => \App\Models\Supplier::all()
-    ]);
-});
+// Route::get('/form-data', function () {
+//     return response()->json([
+//         'brands' => \App\Models\Brand::all(),
+//         'suppliers' => \App\Models\Supplier::all()
+//     ]);
+// });

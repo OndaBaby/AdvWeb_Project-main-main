@@ -43,12 +43,11 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth','role'])->group(function () {
-    Route::get('/admin/home', [HomeController::class, 'admin'])->name('admin.home');
+    Route::get('/admin/home', [HomeController::class, 'admin'])->name('admin.dashboard');
 });
 
 Route::view('/supplier', 'supplier.index');
 Route::view('/product', 'product.index');
+Route::view('/', 'welcome')->name('welcome');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

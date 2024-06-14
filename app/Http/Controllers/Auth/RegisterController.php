@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Image;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -52,7 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'uploads' => 'required|file|mimes:jpg,jpeg,png,gif|max:2048'
+            'image' => ['required', 'image', 'mimes:jpg,bmp,png', 'max:2048'],
         ]);
     }
 
@@ -64,20 +66,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $files = $request->file('uploads');
-        $fileName = $files->getClientOriginalName();
-        $filePath = 'public/images/' . $fileName;
-    
-        // Save file to storage
-        Storage::put($filePath, file_get_contents($files));
-    
-        // Create the user
+        if (isset($data['image'])) {
+            $originalFileName = $data['image']->getClientOriginalName();
+            $imagePath = 'images/' . $originalFileName;
+            $data['image']->storeAs('images', $originalFileName, 'public');
+        } else {
+            throw new \Exception('Image is required');
+        }
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'img_path' => 'storage/images/' . $fileName
+            'img_path' => $originalFileName,
         ]);
+
         return $user;
     }
+    
+    //pag ireread yung image dapat ganto <img src="{{ asset('storage/images/' . $user->img_path) }}" alt="User Image">
 }
