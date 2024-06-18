@@ -7,7 +7,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CourierController;
-
+use App\Http\Controllers\ShopController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,6 +29,8 @@ Route::apiResource('brands', BrandController::class);
 Route::apiResource('suppliers', SupplierController::class);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('couriers', CourierController::class);
+Route::apiResource('shop', ShopController::class);
+
 
 // Route::get('/form-data', function () {
 //     return response()->json([

@@ -49,5 +49,6 @@ Route::middleware(['auth','role'])->group(function () {
 Route::view('/supplier', 'supplier.index');
 Route::view('/product', 'product.index');
 Route::view('/', 'welcome')->name('welcome');
+Route::view('/shop', 'shop.index');
 
 Auth::routes();

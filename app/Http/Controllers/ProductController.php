@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         // Eager load brand and supplier relationships
-        $products = Product::with(['brand', 'supplier'])->orderByDesc('id')->get();
+        $products = Product::with(['brand', 'supplier', 'stocks'])->orderByDesc('id')->get();
         $brands = Brand::all();
         $suppliers = Supplier::all();
 
@@ -74,7 +74,6 @@ class ProductController extends Controller
             }
             $product->img_path = rtrim($product->img_path, ',');
         }
-
         // Save the product
         $product->save();
 

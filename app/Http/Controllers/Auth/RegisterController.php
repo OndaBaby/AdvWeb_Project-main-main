@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/shop';
 
     /**
      * Create a new controller instance.
@@ -83,6 +83,6 @@ class RegisterController extends Controller
 
         return $user;
     }
-    
+
     //pag ireread yung image dapat ganto <img src="{{ asset('storage/images/' . $user->img_path) }}" alt="User Image">
 }
