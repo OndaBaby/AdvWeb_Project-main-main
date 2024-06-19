@@ -5,7 +5,7 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (data) {
             console.log(data);
-            $.each(data.products, function (key, value) {
+            $.each(data, function (key, value) {
                 var products = `
                     <div class='item'>
                         <div class='itemDetails'>
@@ -22,6 +22,7 @@ $(document).ready(function () {
                         <button type='button' class='btn btn-primary add'>Add to cart</button>
                     </div>`;
                 $("#products").append(products);
+                console.log(products);
             });
         },
         error: function () {
@@ -29,4 +30,38 @@ $(document).ready(function () {
             alert("error");
         }
     });
+
+    $("#products").on('click', '.add', function () {
+		itemCount++;
+		$('#itemCount').text(itemCount).css('display', 'block');
+		clone = $(this).siblings().clone().appendTo('#cartItems')
+			.append('<button class="removeItem">Remove Item</button>');
+		// Calculate Total Price
+		var price = parseInt($(this).siblings().find('.price').text());
+		priceTotal += price;
+		$('#cartTotal').text("Total: php" + priceTotal);
+	});
+
+    $('.openCloseCart').click(function () {
+		$('#shoppingCart').show();
+	});
+    $('#close').click(function () {
+		$('#shoppingCart').hide();
+	});
+
+    $('#shoppingCart').on('click', '.removeItem', function () {
+		$(this).parent().remove();
+		itemCount--;
+		$('#itemCount').text(itemCount);
+
+		// Remove Cost of Deleted Item from Total Price
+		var price = parseInt($(this).siblings().find('.price').text());
+		priceTotal -= price;
+		$('#cartTotal').text("Total: php" + priceTotal);
+
+		if (itemCount === 0) {
+			$('#itemCount').css('display', 'none');
+            $('#shoppingCart').hide();
+		}
+	});
 });

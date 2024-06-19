@@ -1,7 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
-    {{-- <h1>Your Shopping Cart</h1>
-    <div id="cart-container">
+<div class="container">
+    <h1>Shop</h1>
+    <div id="products" class="row">
+        <!-- Products will be appended here -->
+    </div>
+</div>
+    {{-- <h1>Your Shopping Cart</h1> --}}
+    {{-- <div id="cart-container">
         <div id="cart">
             <i class="fa fa-shopping-cart fa-2x openCloseCart" aria-hidden="true"></i>
             <button id="emptyCart">Empty Cart</button>
@@ -23,5 +29,5 @@
             <li><a href="index.html">Shopping Cart</a></li>
         </ul>
     </nav>
-    <div class="container container-fluid" id="items"></div> --}}
+    <div class="container container-fluid" id="products"></div> --}}
 @endsection

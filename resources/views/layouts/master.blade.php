@@ -47,6 +47,11 @@
     {{-- <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script> --}}
     {{-- <link rel="stylesheet" href="{{ url('/css/app.css') }}"> --}}
     <script src="{{ asset('js/shop.js') }}"></script>
+    <script src="{{ asset('js/customer.js') }}"></script>
+    <script src="{{ asset('js/brand.js') }}"></script>
+    <script src="{{ asset('js/supplier.js') }}"></script>
+    <script src="{{ asset('js/product.js') }}"></script>
+    <script src="{{ asset('js/courier.js') }}"></script>
     @yield('styles')
 </head>
 
